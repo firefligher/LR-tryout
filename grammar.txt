@@ -1,0 +1,14 @@
+Sum ::= Sum "+" Mul | Mul
+Mul ::= Mul "*" Num | Num
+Num ::= "(" Sum ")" | "sqrt" "(" Sum ")" | Constant
+
+Productions
+-----------
+
+1. Sum -> Sum "+" Mul
+2. Sum -> Mul			; Omitted
+3. Mul -> Mul "*" Num
+4. Mul -> Num			; Omitted
+5. Num -> "(" Sum ")"
+6. Num -> "sqrt" "(" Sum ")"
+7. Num -> Constant		; Omitted
