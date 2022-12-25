@@ -91,15 +91,15 @@ enum State {
                 public void visit(Symbol symbol, ParserControl parserControl) {
                     SymbolType symbolType = symbol.getType();
 
-                    if (
-                            symbolType == SymbolType.Asterisk ||
-                                    symbolType == SymbolType.Plus
-                    ) {
+                    if (symbolType == SymbolType.Asterisk) {
                         parserControl.push(OperatorOrEnd);
                         return;
                     }
 
-                    if (symbolType == SymbolType.RightParenthesis) {
+                    if (
+                            symbolType == SymbolType.Plus ||
+                                    symbolType == SymbolType.RightParenthesis
+                    ) {
                         this.reduce(parserControl);
                         return;
                     }
@@ -304,13 +304,9 @@ enum State {
                 public void visit(Symbol symbol, ParserControl parserControl) {
                     SymbolType symbolType = symbol.getType();
 
-                    if (symbolType == SymbolType.Asterisk) {
-                        parserControl.push(OperatorOrEnd);
-                        return;
-                    }
-
                     if (
-                            symbolType == SymbolType.Plus ||
+                            symbolType == SymbolType.Asterisk ||
+                                    symbolType == SymbolType.Plus ||
                                     symbolType == SymbolType.RightParenthesis
                     ) {
                         this.reduce(parserControl);
